@@ -9,15 +9,24 @@ class App extends Component {
 
 
   getLastFM = (entry) => {
-    // var lastFMinstance = axios.create({
-    //   headers: {'Access-Control-Allow-Origin:': '*'}
-    // });
 
-    // let lastFMurl = `http://www.last.fm/api/auth/?api_key=${process.env.REACT_APP_LASTM_KEY}`;
+    // Set the API root URL
+    let lastFMurl = 'http://ws.audioscrobbler.com/2.0/';
 
-    axios.get(`http://ws.audioscrobbler.com/2.0/?method=artist.getSimilar&&artist=${entry}&api_key=${process.env.REACT_APP_LASTM_KEY}`)
+    // Set the requested info
+    lastFMurl += `?method=artist.getSimilar&&artist=${entry}`;
+
+    // Set JSON as the format
+    lastFMurl += '&format=json';
+
+    // Set the API key
+    lastFMurl += `&api_key=${process.env.REACT_APP_LASTM_KEY}`;
+
+    //`http://ws.audioscrobbler.com/2.0/&api_key=${process.env.REACT_APP_LASTM_KEY}`
+
+    axios.get(lastFMurl)
       .then( results => {
-        console.log(results);
+        console.log(results.data);
       })
       .catch( err => {
         console.log(err)
