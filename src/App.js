@@ -13,14 +13,23 @@ class App extends Component {
     // Set the API root URL
     let lastFMurl = 'http://ws.audioscrobbler.com/2.0/';
 
-    // Set the requested info
-    lastFMurl += `?method=artist.getSimilar&&artist=${entry}`;
+    // Set similar artists
+    // lastFMurl += `?method=artist.getSimilar&&artist=${entry}`;
 
-    // Set JSON as the format
-    lastFMurl += '&format=json';
+    // Get user
+    // lastFMurl += `?method=user.gettoptags&user=${entry}`;
+
+    // Get user's charts
+    // lastFMurl += `?method=user.getweeklychartlist&user=${entry}`;
+
+    // Get user's library
+    lastFMurl += `?method=library.getartists&limit=100&user=${entry}`;
 
     // Set the API key
     lastFMurl += `&api_key=${process.env.REACT_APP_LASTM_KEY}`;
+
+    // Set JSON as the format
+    lastFMurl += '&format=json';
 
     //`http://ws.audioscrobbler.com/2.0/&api_key=${process.env.REACT_APP_LASTM_KEY}`
 
