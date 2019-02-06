@@ -1,6 +1,17 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Last.fm API
+A basic React app with connection to the lastfm API.
 
-## Available Scripts
+
+## How'd you build it?
+* React
+* JSX
+* axios
+* [Last.fm API](https://www.last.fm/api/intro)
+* bootstrapped with [Create React App](https://github.com/facebook/create-react-app) -  See below for relevant scripts
+
+---
+
+## Create React App Scripts
 
 In the project directory, you can run:
 
