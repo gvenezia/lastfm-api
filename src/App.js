@@ -6,8 +6,6 @@ import axios from 'axios';
 class App extends Component {
   state = {entry: ''}
 
-
-
   getLastFM = (entry) => {
 
     // Set the API root URL
@@ -42,9 +40,6 @@ class App extends Component {
       });  
   }
 
-  
-  
-
   render() {
     return (
       <div className="App">
@@ -54,8 +49,7 @@ class App extends Component {
             this.getLastFM(this.state.entry);
           }
         }>
-          <input 
-                type="text"
+          <input type="text"
                 value={this.state.entry}
                 onChange={ event => this.setState({entry: event.target.value}) } />
         </form>
