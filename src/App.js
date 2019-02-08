@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 // import logo from './logo.svg';
 // import './App.css';
-import Results from './Results'
+import Results from './Results';
+import Inputs from './Inputs';
 
 class App extends Component {
   state = {
