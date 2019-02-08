@@ -6,7 +6,7 @@ class Results extends Component {
 	render(){
 		return (
 			<p>
-				Results here
+				{this.props.results}
 			</p>	
 		);
 

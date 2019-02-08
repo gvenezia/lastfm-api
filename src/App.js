@@ -7,9 +7,7 @@ import Inputs from './Inputs';
 
 class App extends Component {
   state = {
-    entry: '',
-    artist: '',
-    results: {}
+    results: ''
   }
 
   getLastFM = (entry) => {
@@ -42,7 +40,7 @@ class App extends Component {
 
     axios.get(lastFMurl)
       .then( results => {
-        // this.setState({results: results})
+        this.setState({results: results.data.artists['@attr'].total})
         console.log(results.data);
       })
       .catch( err => {
@@ -52,20 +50,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <form onSubmit={event => {
-            event.preventDefault();
-
-            this.getLastFM(this.state.entry);
-          }
-        }>
-          <input type="text"
-                value={this.state.entry}
-                onChange={ event => this.setState({entry: event.target.value}) } />
-        </form>
-        <div>
-          <Results results={this.state.results}/>
-        </div>  
+      <div>
+        <Inputs getLastFM={this.getLastFM}/>
+        <Results results={this.state.results}/> 
       </div>
     );
   }

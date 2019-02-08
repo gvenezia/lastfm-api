@@ -7,6 +7,7 @@ A basic React app with connection to the lastfm API.
 * [axios](https://www.npmjs.com/package/axios)
 * [Last.fm API](https://www.last.fm/api/intro)
 * hidden `.env` for the Last.fm API key and secret
+* smoke tests for components
 * bootstrapped with [Create React App](https://github.com/facebook/create-react-app) -  See below for relevant scripts
 
 ---
