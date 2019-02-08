@@ -2,9 +2,14 @@ import React, { Component } from 'react';
 import axios from 'axios';
 // import logo from './logo.svg';
 // import './App.css';
+import Results from './Results'
 
 class App extends Component {
-  state = {entry: ''}
+  state = {
+    entry: '',
+    artist: '',
+    results: {}
+  }
 
   getLastFM = (entry) => {
 
@@ -29,10 +34,14 @@ class App extends Component {
     // Set JSON as the format
     lastFMurl += '&format=json';
 
+    // Get top tags
+    // lastFMurl += `?method=artist.gettoptags&artist=${artist}`
+
     //`http://ws.audioscrobbler.com/2.0/&api_key=${process.env.REACT_APP_LASTM_KEY}`
 
     axios.get(lastFMurl)
       .then( results => {
+        // this.setState({results: results})
         console.log(results.data);
       })
       .catch( err => {
@@ -53,6 +62,9 @@ class App extends Component {
                 value={this.state.entry}
                 onChange={ event => this.setState({entry: event.target.value}) } />
         </form>
+        <div>
+          <Results results={this.state.results}/>
+        </div>  
       </div>
     );
   }

@@ -1,7 +1,6 @@
 # Last.fm API
 A basic React app with connection to the lastfm API.
 
-
 ## How'd you build it?
 * React
 * JSX
