@@ -14,7 +14,6 @@ class Inputs extends Component {
 					Search for a User to see their top artists
 				</label>
 				<form onSubmit={event => {
-						console.log(event);
 					    event.preventDefault();
 
 					    if (event.target !== null)
@@ -29,8 +28,6 @@ class Inputs extends Component {
 					Search for an Artist to see their similar artists
 				</label>
 				<form onSubmit={event => {
-					    console.log(event);
-
 					    event.preventDefault();
 
 					    if (event.target !== null)
