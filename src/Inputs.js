@@ -39,10 +39,8 @@ class Inputs extends Component {
 				        onChange={ event => this.setState({artist: event.target.value}) } />
 				</form>	
 				<button onClick={ () => {
-							console.log('clicked');
-							console.log(this.props);
 							this.props.queryObj.artists.artist.forEach( curr => {
-								this.props.getTopTags(curr.name)
+								setTimeout( () => this.props.getTopTags(curr.name), 1000)
 							})
 						}
 					}>

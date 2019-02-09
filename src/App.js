@@ -35,7 +35,7 @@ class App extends Component {
     switch (type){
       case 'user':
         // Get user's library
-        methods += `?method=library.getartists&limit=10&user=${entry}`;
+        methods += `?method=library.getartists&limit=100&user=${entry}`;
         break;
 
       case 'user chart list':
