@@ -7,7 +7,23 @@ import Inputs from './Inputs';
 class App extends Component {
   state = {
     results: '',
-    queryObj: {}
+    queryObj: {},
+    toptags: []
+  }
+
+  getTopTags = (artist) => {
+    let lastFMurl = `http://ws.audioscrobbler.com/2.0/`;
+    lastFMurl += `?method=artist.gettoptags&artist=${artist}`;
+    lastFMurl += `&api_key=${process.env.REACT_APP_LASTM_KEY}&format=json`;
+
+    axios.get(lastFMurl)
+      .then( results => {
+        let toptags = results.data.toptags;
+        console.log(toptags.tag[0].name);
+        let tempArr = [toptags.tag[0].name, toptags.tag[1].name];
+        this.setState({toptags: [...this.state.toptags,...tempArr]})
+      })
+
   }
 
   getLastFM = (type, entry) => {
@@ -69,7 +85,11 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Inputs getLastFM={this.getLastFM}/>
+        <Inputs 
+          queryObj={this.state.queryObj}
+          getLastFM={this.getLastFM}
+          getTopTags={this.getTopTags}
+          />
         <Results results={this.state.results}/> 
       </div>
     );

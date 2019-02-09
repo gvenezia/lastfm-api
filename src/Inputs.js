@@ -38,6 +38,16 @@ class Inputs extends Component {
 				        value={this.state.artist}
 				        onChange={ event => this.setState({artist: event.target.value}) } />
 				</form>	
+				<button onClick={ () => {
+							console.log('clicked');
+							console.log(this.props);
+							this.props.queryObj.artists.artist.forEach( curr => {
+								this.props.getTopTags(curr.name)
+							})
+						}
+					}>
+					Find top 2 tags for each artist in User's top artists (must provide user above)
+				</button>
 			</div>
 		);
 

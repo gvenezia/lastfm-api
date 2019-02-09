@@ -1,5 +1,5 @@
 # Last.fm API
-A basic React app with connection to the [lastfm API](https://www.last.fm/api/intro). [Last.fm](https://www.last.fm/) is a social music platform that tracks what you listen to, stores the data, and does some basic analysis of the data.
+A basic React app with connection to the [lastfm API](https://www.last.fm/api/intro). [Last.fm](https://www.last.fm/) is a social music platform that tracks what you listen to, stores the data, and does some basic analysis of the data. 
 
 # Why'd you build it?
 To test out the Last.fm API before jumping into a more complex data visualization of my last.fm data.
@@ -12,6 +12,9 @@ To test out the Last.fm API before jumping into a more complex data visualizatio
 * hidden `.env` for the Last.fm API key and secret
 * smoke tests for components
 * bootstrapped with [Create React App](https://github.com/facebook/create-react-app) -  See below for relevant scripts
+
+#### [Last.fm API Terms of Service](https://www.last.fm/api/tos)
+
 
 ---
 
