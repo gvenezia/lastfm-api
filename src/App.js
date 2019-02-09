@@ -10,22 +10,41 @@ class App extends Component {
     results: ''
   }
 
-  getLastFM = (entry) => {
-
+  getLastFM = (type, entry) => {
     // Set the API root URL
     let lastFMurl = 'http://ws.audioscrobbler.com/2.0/';
 
-    // Set similar artists
-    // lastFMurl += `?method=artist.getSimilar&&artist=${entry}`;
+    switch (type){
+      case 'user':
+        // Get user's library
+        lastFMurl += `?method=library.getartists&limit=100&user=${entry}`;
+        break;
 
-    // Get user
-    // lastFMurl += `?method=user.gettoptags&user=${entry}`;
+      case 'user chart list':
+        // Get user's charts
+        lastFMurl += `?method=user.getweeklychartlist&user=${entry}`;
+        break;
 
-    // Get user's charts
-    // lastFMurl += `?method=user.getweeklychartlist&user=${entry}`;
+      case 'artist':
+        // Get similar artists
+        lastFMurl += `?method=artist.getSimilar&&artist=${entry}`;
+        break;
 
-    // Get user's library
-    lastFMurl += `?method=library.getartists&limit=100&user=${entry}`;
+      case 'artist top tags':
+        // Get top tags
+        lastFMurl += `?method=artist.gettoptags&artist=${entry}`;
+        break;
+
+      case 'user top tags':
+        // Get user's top assigned tags
+        lastFMurl += `?method=user.gettoptags&user=${entry}`;  
+        break;
+
+      default:
+        console.log('No matching cases');
+        break;
+
+    }
 
     // Set the API key
     lastFMurl += `&api_key=${process.env.REACT_APP_LASTM_KEY}`;
@@ -33,14 +52,9 @@ class App extends Component {
     // Set JSON as the format
     lastFMurl += '&format=json';
 
-    // Get top tags
-    // lastFMurl += `?method=artist.gettoptags&artist=${artist}`
-
-    //`http://ws.audioscrobbler.com/2.0/&api_key=${process.env.REACT_APP_LASTM_KEY}`
-
     axios.get(lastFMurl)
       .then( results => {
-        this.setState({results: results.data.artists['@attr'].total})
+        // this.setState({results: results.data.artists['@attr'].total})
         console.log(results.data);
       })
       .catch( err => {
