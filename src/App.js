@@ -22,8 +22,20 @@ class App extends Component {
         console.log(toptags.tag[0].name);
         let tempArr = [toptags.tag[0].name, toptags.tag[1].name];
         this.setState({toptags: [...this.state.toptags,...tempArr]})
-      })
+      });
+  }
 
+  findTally = () => {
+    let arr = this.state.toptags;
+    let tally = {};
+    let a = '';
+
+    for (let i = 0; i < arr.length; i++) {
+      a = arr[i];
+      tally[a] = (tally[a] || 0) + 1;
+    }
+
+    console.log(tally);
   }
 
   getLastFM = (type, entry) => {
@@ -89,6 +101,7 @@ class App extends Component {
           queryObj={this.state.queryObj}
           getLastFM={this.getLastFM}
           getTopTags={this.getTopTags}
+          findTally={this.findTally}
           />
         <Results results={this.state.results}/> 
       </div>
