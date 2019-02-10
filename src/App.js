@@ -16,13 +16,16 @@ class App extends Component {
     lastFMurl += `?method=artist.gettoptags&artist=${artist}`;
     lastFMurl += `&api_key=${process.env.REACT_APP_LASTM_KEY}&format=json`;
 
-    axios.get(lastFMurl)
+    setTimeout( () => axios.get(lastFMurl)
       .then( results => {
         let toptags = results.data.toptags;
         console.log(toptags.tag[0].name);
-        let tempArr = [toptags.tag[0].name, toptags.tag[1].name];
+        let tempArr = [toptags.tag[0].name];
         this.setState({toptags: [...this.state.toptags,...tempArr]})
-      });
+      }).catch( err => {
+        console.log(artist + 'caused tag error');
+      })
+      , 1000)
   }
 
   findTally = () => {
@@ -35,7 +38,16 @@ class App extends Component {
       tally[a] = (tally[a] || 0) + 1;
     }
 
-    console.log(tally);
+    var sortable = [];
+    for (var tag in tally) {
+        sortable.push([tag, tally[tag]]);
+    }
+
+    sortable.sort(function(a, b) {
+        return a[1] - b[1];
+    });
+
+    console.log(sortable);
   }
 
   getLastFM = (type, entry) => {
@@ -47,7 +59,7 @@ class App extends Component {
     switch (type){
       case 'user':
         // Get user's library
-        methods += `?method=library.getartists&limit=100&user=${entry}`;
+        methods += `?method=library.getartists&limit=2000&user=${entry}`;
         break;
 
       case 'user chart list':
