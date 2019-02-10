@@ -8,7 +8,8 @@ class App extends Component {
   state = {
     results: '',
     queryObj: {},
-    toptags: []
+    toptags: [],
+    resultsList: []
   }
 
   getTopTags = (artist) => {
@@ -45,7 +46,9 @@ class App extends Component {
 
     sortable.sort(function(a, b) {
         return a[1] - b[1];
-    });
+    }).reverse();
+
+    this.setState({resultsList: sortable});
 
     console.log(sortable);
   }
@@ -59,7 +62,7 @@ class App extends Component {
     switch (type){
       case 'user':
         // Get user's library
-        methods += `?method=library.getartists&limit=2000&user=${entry}`;
+        methods += `?method=library.getartists&limit=200&page=2&user=${entry}`;
         break;
 
       case 'user chart list':
@@ -115,7 +118,10 @@ class App extends Component {
           getTopTags={this.getTopTags}
           findTally={this.findTally}
           />
-        <Results results={this.state.results}/> 
+        <Results 
+          resultsList={this.state.resultsList}
+          results={this.state.results}
+          /> 
       </div>
     );
   }

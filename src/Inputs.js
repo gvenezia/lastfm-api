@@ -40,7 +40,7 @@ class Inputs extends Component {
 				</form>	
 				<button onClick={ () => {
 							this.props.queryObj.artists.artist.forEach( curr => {
-								setTimeout( () => this.props.getTopTags(curr.name), 1000)
+								this.props.getTopTags(curr.name)
 							});
 						}
 					}>
