@@ -21,7 +21,7 @@ class App extends Component {
       .then( results => {
         let toptags = results.data.toptags;
         console.log(toptags.tag[0].name);
-        let tempArr = [toptags.tag[0].name];
+        let tempArr = [toptags.tag[0].name, toptags.tag[1].name];
         this.setState({toptags: [...this.state.toptags,...tempArr]})
       }).catch( err => {
         console.log(artist + 'caused tag error');
